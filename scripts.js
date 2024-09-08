@@ -1,15 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
     let currentLocation = window.location.pathname.split('/').pop();
-    
-    if (window.location.pathname === '/' || window.location.pathname === ''){
-        window.location.href = '/index.html';
-    }
 
     const navLinks = document.querySelectorAll('.nav-link');
 
+    if (currentLocation === '' || currentLocation === '/') {
+        currentLocation = 'index.html';
+    }
+
     navLinks.forEach(link => {
         const linkPath = link.getAttribute('href').split('/').pop();
-        if (linkPath === currentLocation) {
+        if (linkPath === currentLocation || (linkPath === '' && currentLocation === 'index.html')) {
             link.classList.add('active');
         }
     });
