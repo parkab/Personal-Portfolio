@@ -113,16 +113,18 @@ html, body{
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0px;
+    /* padding-top: 0px; */
     height: 89vh;
 }
 
 .resume-container iframe {
+    position: absolute;
     border: none;
     width: 100%;
-    max-width: 800px;
-    height: 100vh;
-    max-height: 600px;
+    max-width: 80%;
+    height: 80vh;
+    max-height: 80vh;
+    object-fit: cover;
 }
 
 @keyframes fadeIn {
@@ -205,6 +207,7 @@ html, body{
         max-width: 200px;
         width: 100%;
         margin: 0 auto;
+        margin-top: 40px;
     }
 
     .resume-container iframe {
@@ -230,6 +233,7 @@ html, body{
     }
 
     .image-section img {
+        margin-top: 40px;
         max-width: 150px;
     }
 
