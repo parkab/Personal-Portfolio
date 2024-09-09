@@ -276,9 +276,10 @@ html, body{
     }
 
     .resume-container iframe {
-        height: 100vh;
+        height: 80vh;
         width: 100%;
-        border: none;
+        transform: scale(0.8);
+        transform-origin: top center;
     }
 }
 
@@ -312,7 +313,9 @@ html, body{
     }
 
     .resume-container iframe {
-        height: 90vh;
+        height: 80vh;
         width: 100%;
+        transform: scale(0.8);
+        transform-origin: top center;
     }
 }
