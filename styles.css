@@ -247,11 +247,15 @@ html, body{
 @media (max-width: 768px) {
     .experiences-container {
         grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        padding: 0;
+        margin: 0;
     }
     .projects-container {
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(2, 1fr);
+        padding: 0;
+        margin: 0;
     }
     .content-container {
         flex-direction: column;
@@ -272,19 +276,25 @@ html, body{
     }
 
     .resume-container iframe {
-        height: 80vh;
+        height: 60vh;
         width: 100%;
+        border: none;
+        
     }
 }
 
 @media (max-width: 480px) {
     .experiences-container {
         grid-template-columns: 1fr;
-        grid-template-rows: repeat(6, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        padding: 0;
+        margin: 0;
     }
     .projects-container {
         grid-template-columns: 1fr;
         grid-template-rows: repeat(4, 1fr);
+        padding: 0;
+        margin: 0;
     }
     .nav-links li {
         margin: 0 10px;
@@ -303,6 +313,8 @@ html, body{
     }
 
     .resume-container iframe {
-        height: 70vh;
+        height: 40vh;
+        width: 100%;
+        border: none;
     }
 }
