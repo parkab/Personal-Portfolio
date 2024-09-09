@@ -279,13 +279,14 @@ html, body{
         margin-top: 20px;
     }
 
-    .resume-iframe {
+    .resume-container iframe {
         display: none;
     }
 
     .resume-img {
         display: block;
-        width: 100%;
+        width: 90%;
+        margin: 0;
         height: auto;
     }
 }
@@ -319,13 +320,14 @@ html, body{
         max-width: 150px;
     }
 
-    .resume-iframe {
+    .resume-container iframe {
         display: none;
     }
 
     .resume-img {
         display: block;
-        width: 100%;
+        width: 90%;
+        margin: 0;
         height: auto;
     }
 }
