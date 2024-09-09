@@ -4,12 +4,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelectorAll('.nav-link');
 
     if (currentLocation === '' || currentLocation === '/') {
-        currentLocation = 'index.html';
+        currentLocation = '/';
     }
 
     navLinks.forEach(link => {
         const linkPath = link.getAttribute('href').split('/').pop();
-        if (linkPath === currentLocation || (linkPath === '' && currentLocation === 'index.html')) {
+        if (linkPath === currentLocation || (linkPath === '' && currentLocation === '/')) {
             link.classList.add('active');
         }
     });
