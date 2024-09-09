@@ -275,10 +275,15 @@ html, body{
         margin-top: 20px;
     }
 
+    .resume-container {
+        transform: scale(0.5);
+        transform-origin: top center;
+        zoom: 0.5;
+    }
+
     .resume-container iframe {
-        height: 90vh;
+        height: 80vh;
         width: 100%;
-        zoom: 0.8;
     }
 }
 
@@ -311,9 +316,14 @@ html, body{
         max-width: 150px;
     }
 
+    .resume-container {
+        transform: scale(0.5);
+        transform-origin: top center;
+        zoom: 0.5;
+    }
+
     .resume-container iframe {
-        height: 90vh;
+        height: 80vh;
         width: 100%;
-        zoom: 0.8;
     }
 }
