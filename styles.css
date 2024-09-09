@@ -297,12 +297,6 @@ html, body{
         overflow: hidden;
         overflow-y: auto;
     }
-    .content-container {
-        flex-direction: column;
-        padding: 10px;
-        justify-content: flex-start;
-        align-items: flex-start;
-    }
     .nav-links li {
         margin: 0 10px;
     }
