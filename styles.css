@@ -291,9 +291,9 @@ html, body{
 
     .resume-img {
         display: block;
-        width: 90%;
+        width: 80%;
         margin: 0;
-        height: auto;
+        height: 90vh;
         padding: 0;
     }
 }
@@ -339,9 +339,9 @@ html, body{
 
     .resume-img {
         display: block;
-        width: 90%;
+        width: 80%;
         margin: 0;
-        height: auto;
+        height: 90vh;
         padding: 0;
     }
 }
