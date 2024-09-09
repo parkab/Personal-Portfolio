@@ -260,8 +260,6 @@ html, body{
     .content-container {
         flex-direction: column;
         padding: 10px;
-        justify-content: flex-start;
-        align-items: flex-start;
     }
 
     .about-section {
@@ -278,7 +276,7 @@ html, body{
     }
 
     .resume-container iframe {
-        height: 60vh;
+        height: 100vh;
         width: 100%;
         border: none;
     }
@@ -314,8 +312,7 @@ html, body{
     }
 
     .resume-container iframe {
-        height: 60vh;
+        height: 90vh;
         width: 100%;
-        border: none;
     }
 }
