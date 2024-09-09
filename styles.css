@@ -244,6 +244,10 @@ html, body{
     font-size: 1rem;
 }
 
+.resume-img {
+    display: none;
+}
+
 @media (max-width: 768px) {
     .experiences-container {
         grid-template-columns: repeat(2, 1fr);
@@ -275,17 +279,14 @@ html, body{
         margin-top: 20px;
     }
 
-    .resume-container {
-        transform: scale(0.5);
-        transform-origin: top center;
-        zoom: 0.5;
-        overflow: hidden;
+    .resume-iframe {
+        display: none;
     }
 
-    .resume-container iframe {
-        height: 100vh;
+    .resume-img {
+        display: block;
         width: 100%;
-        overflow: hidden;
+        height: auto;
     }
 }
 
@@ -318,16 +319,13 @@ html, body{
         max-width: 150px;
     }
 
-    .resume-container {
-        transform: scale(0.5);
-        transform-origin: top center;
-        zoom: 0.5;
-        overflow: hidden;
+    .resume-iframe {
+        display: none;
     }
 
-    .resume-container iframe {
-        height: 100vh;
+    .resume-img {
+        display: block;
         width: 100%;
-        overflow: hidden;
+        height: auto;
     }
 }
