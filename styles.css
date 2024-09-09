@@ -248,18 +248,20 @@ html, body{
     .experiences-container {
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(2, 1fr);
-        padding: 0;
-        margin: 0;
+        overflow: hidden;
+        overflow-y: auto;
     }
     .projects-container {
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(2, 1fr);
-        padding: 0;
-        margin: 0;
+        overflow: hidden;
+        overflow-y: auto;
     }
     .content-container {
         flex-direction: column;
         padding: 10px;
+        justify-content: flex-start;
+        align-items: flex-start;
     }
 
     .about-section {
@@ -279,22 +281,27 @@ html, body{
         height: 60vh;
         width: 100%;
         border: none;
-        
     }
 }
 
 @media (max-width: 480px) {
     .experiences-container {
         grid-template-columns: 1fr;
-        grid-template-rows: repeat(4, 1fr);
-        padding: 0;
-        margin: 0;
+        grid-template-rows: repeat(2, 1fr);
+        overflow: hidden;
+        overflow-y: auto;
     }
     .projects-container {
         grid-template-columns: 1fr;
         grid-template-rows: repeat(4, 1fr);
-        padding: 0;
-        margin: 0;
+        overflow: hidden;
+        overflow-y: auto;
+    }
+    .content-container {
+        flex-direction: column;
+        padding: 10px;
+        justify-content: flex-start;
+        align-items: flex-start;
     }
     .nav-links li {
         margin: 0 10px;
@@ -313,7 +320,7 @@ html, body{
     }
 
     .resume-container iframe {
-        height: 40vh;
+        height: 60vh;
         width: 100%;
         border: none;
     }
