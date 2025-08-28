@@ -12,27 +12,229 @@
 <body>
     <header class="header">
         <ul class="nav-links">
-            <a href="/" class="nav-link">Home</a>
-            <a href="experiences" class="nav-link">Experiences</a>
-            <a href="projects" class="nav-link">Projects</a>
-            <a href="resume" class="nav-link">Resume</a>
+            <li><a href="#home" class="nav-link">Home</a></li>
+            <li><a href="#experiences" class="nav-link">Experiences</a></li>
+            <li><a href="#projects" class="nav-link">Projects</a></li>
         </ul>
     </header>
 
-    <div class="content-container">
-        <div class="about-section">
-            <h1>Welcome! I'm Parth.</h1>
-            <p>A computer science student at New Jersey Institute of Technology's Albert Dorman Honors College who's always excited to learn new tech.</p>
-            <div class="button-container">
-                <a href="https://github.com/parkab" class="btn">GitHub</a>
-                <a href="https://www.linkedin.com/in/parthkabaria/" class="btn">LinkedIn</a>
-                <a href="mailto:pkabaria77@gmail.com" class="btn">Email</a>
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="section home-section">
+            <div class="content-container">
+                <div class="about-section">
+                    <h1>Welcome! I'm Parth.</h1>
+                    <p>A computer science student at New Jersey Institute of Technology's Albert Dorman Honors College who's always excited to learn new tech.</p>
+                    <div class="button-container">
+                        <a href="https://github.com/parkab" class="btn">GitHub</a>
+                        <a href="https://www.linkedin.com/in/parthkabaria/" class="btn">LinkedIn</a>
+                        <a href="mailto:pkabaria77@gmail.com" class="btn">Email</a>
+                    </div>
+                </div>
+                <div class="image-section">
+                    <img src="me.jpg" alt="Me Picture">
+                </div>
             </div>
-        </div>
-        <div class="image-section">
-            <img src="me.jpg" alt="Me Picture">
-        </div>
+    </section>
+    <div class="wave-divider">
+        <svg viewBox="0 0 400 32" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <path d="M0 16 Q 50 32 100 16 T 200 16 T 300 16 T 400 16" stroke="#002244" stroke-width="4" fill="none"/>
+        </svg>
     </div>
+
+     <!-- Experiences Section -->
+    <section id="experiences" class="section experiences-section extra-bottom-space">
+            <div class="experiences-section-container">
+                <div class="experiences-timeline">
+                    <div class="experiences-timeline-item left">
+                        <div class="experiences-timeline-content">
+                            <div class="experiences-timeline-header">
+                                <div class="experiences-company-logo">
+                                    <img src="logos/merck.png" alt="Merck logo">
+                                </div>
+                                <div class="experiences-company-info">
+                                    <h3 class="experiences-company-name">Merck</h3>
+                                    <h4 class="experiences-position-title">Software Engineer Intern</h4>
+                                    <span class="experiences-timeline-date">June 2025 - August 2025</span>
+                                </div>
+                            </div>
+                            <div class="experiences-timeline-description">
+                                <ul>
+                                    <li>Digitized and standardized research documentation by creating reusable experiment templates in Signals Notebook</li>
+                                    <li>Developed Python backend workflows using the Signals API to link template data and perform advanced computations</li>
+                                    <li>Reduced process time by over 25%, accelerating data input, retrieval, and comparison with results from similar studies</li>
+                                    <li>Saved 2.5 hours per global R&D PMO meeting by using Power Automate to optimize SharePoint file management</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="experiences-timeline-item right">
+                        <div class="experiences-timeline-content">
+                            <div class="experiences-timeline-header">
+                                <div class="experiences-company-logo">
+                                    <img src="logos/qpc.jpg" alt="Quantum Pulse Consulting logo">
+                                </div>
+                                <div class="experiences-company-info">
+                                    <h3 class="experiences-company-name">Quantum Pulse Consulting</h3>
+                                    <h4 class="experiences-position-title">Software Engineer Intern</h4>
+                                    <span class="experiences-timeline-date">January 2025 - April 2025</span>
+                                </div>
+                            </div>
+                            <div class="experiences-timeline-description">
+                                <ul>
+                                    <li>Designed a responsive frontend for a client-facing full-stack web application using React, Tailwind CSS, and Vite</li>
+                                    <li>Collaborated with a Django and PostgreSQL backend team to integrate APIs and maintain a seamless data flow</li>
+                                    <li>Facilitated task delegation within a 5-member Agile sprint team to maintain momentum and clear communication</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="experiences-timeline-item left">
+                        <div class="experiences-timeline-content">
+                            <div class="experiences-timeline-header">
+                                <div class="experiences-company-logo">
+                                    <img src="logos/pseg.png" alt="PSEG logo">
+                                </div>
+                                <div class="experiences-company-info">
+                                    <h3 class="experiences-company-name">Public Service Enterprise Group (PSEG)</h3>
+                                    <h4 class="experiences-position-title">Data Analytics Intern</h4>
+                                    <span class="experiences-timeline-date">June 2024 - August 2024</span>
+                                </div>
+                            </div>
+                            <div class="experiences-timeline-description">
+                                <ul>
+                                    <li>Leveraged data analytics to drive effective customer satisfaction on the Asset Strategy and Reliability team</li>
+                                    <li>Extracted and transformed 1000s of raw data values using SQL queries to assist with multimillion-dollar circuit projects</li>
+                                    <li>Produced meaningful visualizations and reports using PowerBI and Excel to analyze company budget allocation metrics</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="experiences-timeline-item right">
+                        <div class="experiences-timeline-content">
+                            <div class="experiences-timeline-header">
+                                <div class="experiences-company-logo">
+                                    <img src="logos/njit.jpg" alt="NJIT logo">
+                                </div>
+                                <div class="experiences-company-info">
+                                    <h3 class="experiences-company-name">NJIT Mechatronics Research Lab</h3>
+                                    <h4 class="experiences-position-title">Robotics Research Programmer</h4>
+                                    <span class="experiences-timeline-date">October 2023 - May 2024</span>
+                                </div>
+                            </div>
+                            <div class="experiences-timeline-description">
+                                <ul>
+                                    <li>Programmed robots to respond to colored light and shadows while magnetically attaching to and navigating whiteboards</li>
+                                    <li>Implemented a custom Arduino and C++ algorithm to calculate real-time position using processed projector light data</li>
+                                    <li>Presented research at NJIT's Honors Interdisciplinary Research Forum in December 2023</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="experiences-timeline-item left">
+                        <div class="experiences-timeline-content">
+                            <div class="experiences-timeline-header">
+                                <div class="experiences-company-logo">
+                                    <img src="logos/dellicker.png" alt="Dellicker logo">
+                                </div>
+                                <div class="experiences-company-info">
+                                    <h3 class="experiences-company-name">Dellicker Strategies</h3>
+                                    <h4 class="experiences-position-title">Cybersecurity Intern</h4>
+                                    <span class="experiences-timeline-date">September 2022 - June 2023</span>
+                                </div>
+                            </div>
+                            <div class="experiences-timeline-description">
+                                <ul>
+                                    <li>Applied cybersecurity, IT, and project management skills to support security initiatives in a mid-sized company setting</li>
+                                    <li>Conducted research on emerging cybersecurity threats, including recent attacks targeting local school systems</li>
+                                    <li>Reported threat analysis findings and security recommendations to stakeholders during business meetings</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <div class="wave-divider">
+        <svg viewBox="0 0 400 32" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <path d="M0 16 Q 50 32 100 16 T 200 16 T 300 16 T 400 16" stroke="#002244" stroke-width="4" fill="none"/>
+        </svg>
+    </div>
+
+        
+
+<!-- Projects Section -->
+        <section id="projects" class="section projects-section">
+            <div class="projects-section-container">
+                <div class="projects-section-item">
+                    <div class="experiences-timeline-header">
+                        <div class="experiences-company-info">
+                            <h3 class="experiences-company-name">
+                                <a href="https://lexicogs.vercel.app" target="_blank" style="color: #fff;">Lexicogs - HackNJIT 2024</a>
+                            </h3>
+                            <div class="projects-section-tech">React, JavaScript, HTML, CSS</div>
+                            <span class="experiences-timeline-date projects-section-year">November 2024</span>
+                        </div>
+                    </div>
+                    <p class="projects-section-description">
+                        A steampunk-themed React web application that challenges players to identify target words from a continuously moving dataset. Players must apply selective filters within a time limit to find as many correct words as possible.
+                    </p>
+                </div>
+                <div class="projects-section-item">
+                    <div class="experiences-timeline-header">
+                        <div class="experiences-company-info">
+                            <h3 class="experiences-company-name">
+                                <a href="https://github.com/parkab/Internship-Tracker" target="_blank" style="color: #fff;">Internship Tracker</a>
+                            </h3>
+                            <div class="projects-section-tech">Angular, Bootstrap, Node.js, Express.js, MongoDB</div>
+                            <span class="experiences-timeline-date projects-section-year">July 2024 - August 2024</span>
+                        </div>
+                    </div>
+                    <p class="projects-section-description">
+                        A full-stack web application designed to help students manage their internship application process. The platform features user authentication and provides complete CRUD functionality for tracking internship applications, deadlines, and application status.
+                    </p>
+                </div>
+                <div class="projects-section-item">
+                    <div class="experiences-timeline-header">
+                        <div class="experiences-company-info">
+                            <h3 class="experiences-company-name">
+                                <a href="https://jenkinsons.com/aquarium/" target="_blank" style="color: #fff;">Coral Reef Sensor</a>
+                            </h3>
+                            <div class="projects-section-tech">C++, Arduino</div>
+                            <span class="experiences-timeline-date projects-section-year">October 2022 - June 2023</span>
+                        </div>
+                    </div>
+                    <p class="projects-section-description">
+                        An underwater environmental monitoring system that uses color and light sensors to assess coral reef health and quality. The system wirelessly transmits data about reef conditions, providing valuable insights for aquarium marine conservation efforts.
+                    </p>
+                </div>
+                <div class="projects-section-item">
+                    <div class="experiences-timeline-header">
+                        <div class="experiences-company-info">
+                            <h3 class="experiences-company-name">
+                                <a href="https://devpost.com/software/study-buddies-103svj" target="_blank" style="color: #fff;">Study Buddies</a>
+                            </h3>
+                            <div class="projects-section-tech">HTML, JavaScript, CSS</div>
+                            <span class="experiences-timeline-date projects-section-year">Hackathon Project</span>
+                        </div>
+                    </div>
+                    <p class="projects-section-description">
+                        A collaborative web platform designed to enhance student productivity and communication. The application provides tools for time management and facilitates effective collaboration between study partners and groups.
+                    </p>
+                </div>
+            </div>
+    </section>
+    <div class="wave-divider">
+        <svg viewBox="0 0 400 32" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <path d="M0 16 Q 50 32 100 16 T 200 16 T 300 16 T 400 16" stroke="#002244" stroke-width="4" fill="none"/>
+        </svg>
+    </div>
+    </main>
+
     <script src="scripts.js"></script>
 </body>
 </html>

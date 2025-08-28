@@ -1,3 +1,71 @@
+/* Wavy divider between sections */
+.wave-divider {
+    width: 75%;
+    height: 32px;
+    margin: 48px auto;
+    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.wave-divider svg {
+    display: block;
+    width: 100%;
+    height: 32px;
+}
+
+/* PROJECTS SECTION - MATCH EXPERIENCES TIMELINE STYLE */
+.projects-section-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.projects-section-item {
+    background: #002244;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(0, 123, 255, 0.2);
+    border: 1px solid rgba(0, 123, 255, 0.3);
+    padding: 20px 30px;
+    position: relative;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.projects-section-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(0, 123, 255, 0.4);
+    border-color: rgba(0, 123, 255, 0.5);
+    background: #002244;
+}
+
+.projects-section-title {
+    margin: 0 0 5px 0;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.projects-section-description {
+    margin: 0 0 5px 0;
+    font-size: 1.1rem;
+    color: #ffffff;
+}
+
+.projects-section-tech {
+    font-size: 0.95rem;
+    color: #4CAF50;
+    font-weight: 600;
+    margin-bottom: 5px;
+    line-height: 1.6;
+}
+
 html, body{
     margin: 0;
     font-family: 'Open Sans', Arial, sans-serif;
@@ -7,18 +75,18 @@ html, body{
     flex-direction: column;
     min-height: 100vh;
     overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 .header {
     background-color: #002244;
     padding: 1rem 0;
     text-align: center;
-    width: 100vw;
-    min-width: 320px;
-    margin-left: 0;
-    margin-right: 0;
+    width: 100%;
     box-sizing: border-box;
-    
+    position: fixed;
+    top: 0;
+    z-index: 1000;
 }
 
 .nav-links {
@@ -28,10 +96,8 @@ html, body{
     justify-content: center;
     margin: 0;
     width: 100%;
-    max-width: 100vw;
     box-sizing: border-box;
     flex-wrap: wrap;
-    overflow: hidden;
 }
 
 .nav-links li {
@@ -62,6 +128,25 @@ html, body{
     background-color: #fff;
     color: #002244;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+main {
+    margin-top: 80px; /* Account for fixed header */
+}
+
+.section {
+    min-height: 100vh;
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    scroll-margin-top: 90px; /* Ensures anchor scrolls below fixed header */
+}
+
+.home-section {
+    padding-top: 0;
+    margin-top: -80px; /* Remove the extra top spacing */
 }
 
 .content-container {
@@ -109,26 +194,6 @@ html, body{
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.resume-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 89vh;
-    width: 100%;
-    padding: 0px;
-    box-sizing: border-box;
-}
-
-.resume-container iframe {
-    position: absolute;
-    border: none;
-    width: 100%;
-    max-width: 80%;
-    height: 100vh;
-    max-height: 80vh;
-    object-fit: cover;
-}
-
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -142,125 +207,241 @@ html, body{
     animation: fadeIn 1s ease-in-out;
 }
 
-.experiences-container {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(200px, 1fr));
-    grid-template-rows: repeat(2, auto);
-    gap: 30px;
-    padding: 30px;
-    width: 90%;
-    height: 88vh;
-    box-sizing: border-box;
+/* ===== EXPERIENCES SECTION - IMPROVED CENTERING ===== */
+.experiences-section-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+    position: relative;
+}
+
+.experiences-timeline {
+    position: relative;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
-.experience-item {
-    background-color: #002244;
-    color: white;
-    border-radius: 20px;
-    padding: 2rem;
-    transition: transform 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+.experiences-timeline::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    background: #002244;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -2px;
+    border-radius: 2px;
+    box-shadow: 0 0 20px rgba(0, 123, 255, 0.3);
+}
+
+.experiences-timeline-item {
+    padding: 5px 40px;
+    position: relative;
+    width: 50%;
+    box-sizing: border-box;
+}
+
+/* IMPROVED DOT POSITIONING - Always centered on timeline */
+.experiences-timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border: 4px solid #003366;
+    border-radius: 50%;
+    top: 50%;
+    /* This ensures the dot is always centered on the timeline */
+    left: calc(100% - 13px); /* For left items, position at right edge minus half dot width */
+    transform: translateY(-50%);
+    box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+    z-index: 10;
+}
+
+.experiences-timeline-item.left {
+    left: 0%;
+}
+
+.experiences-timeline-item.right {
+    left: 50%;
+}
+
+/* Right items need different positioning */
+.experiences-timeline-item.right::after {
+    left: -13px; /* Position at left edge minus half dot width */
+}
+
+.experiences-timeline-content {
+    padding: 20px 30px;
+    background: #002244; /* Match button background */
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(0, 123, 255, 0.2);
+    border: 1px solid rgba(0, 123, 255, 0.3);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.experiences-timeline-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(0, 123, 255, 0.4);
+    border-color: rgba(0, 123, 255, 0.5);
+    background: #002244; /* Keep same as button background on hover */
+}
+
+.experiences-timeline-content::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    width: 0;
+    height: 0;
+    border: 15px solid transparent;
+    display: none; /* Remove the arrows */
+}
+
+.experiences-timeline-item.left .experiences-timeline-content::before {
+    right: -15px;
+    border-left-color: #003366;
+    display: none; /* Remove the arrows */
+}
+
+.experiences-timeline-item.right .experiences-timeline-content::before {
+    left: -15px;
+    border-right-color: #003366;
+    display: none; /* Remove the arrows */
+}
+
+.experiences-timeline-header {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    text-align: center;
-    box-sizing: border-box;
+    margin-bottom: 15px;
+    gap: 15px;
 }
 
-.experience-item a {
-    text-decoration: underline;
-}
-
-.experience-item:hover {
-    transform: scale(1.05);
-}
-
-.experience-title {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.experience-title:hover {
-    text-decoration: underline;
-}
-
-.experience-description {
-    font-size: 1rem;
-}
-
-.projects-container {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(200px, 1fr));
-    grid-template-rows: repeat(2, auto);
-    gap: 30px;
-    padding: 30px;
-    width: 90%;
-    height: 88vh;
-    box-sizing: border-box;
-    margin: 0 auto;
-}
-
-.project-item {
-    background-color: #002244;
-    color: white;
-    border-radius: 20px;
-    padding: 2rem;
-    transition: transform 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+.experiences-company-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    text-align: center;
-    box-sizing: border-box;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.project-item a {
-    text-decoration: underline;
+.experiences-company-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
 }
 
-.project-item:hover {
-    transform: scale(1.05);
+.experiences-company-info {
+    flex: 1;
 }
 
-.project-title {
+.experiences-company-name {
+    margin: 0 0 5px 0;
+    font-size: 1.3rem;
+    font-weight: 700;
     color: #fff;
-    text-decoration: none;
-    font-size: 1.2rem;
+}
+
+.experiences-position-title {
+    margin: 0 0 5px 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #4CAF50;
+}
+
+.experiences-timeline-date {
+    font-size: 0.9rem;
+    color: #B0BEC5;
+    font-weight: 500;
+}
+
+.experiences-timeline-description ul {
+    margin: 0;
+    padding-left: 20px;
+    list-style: none;
+}
+
+.experiences-timeline-description li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+    color: #E0E0E0;
+    position: relative;
+    padding-left: 20px;
+}
+
+.experiences-timeline-description li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: #4CAF50;
     font-weight: bold;
-    margin-bottom: 10px;
+    font-size: 1.2em;
 }
 
-.project-title:hover {
-    text-decoration: underline;
+.experiences-timeline-description li:last-child {
+    margin-bottom: 0;
 }
 
-.project-description {
-    font-size: 1rem;
-}
-
-.resume-img {
-    display: none;
-}
-
+/* Mobile responsiveness - SIMPLIFIED */
 @media (max-width: 768px) {
-    .experiences-container {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(2, 1fr);
-        overflow: hidden;
-        overflow-y: auto;
+    .experiences-timeline::after {
+        left: 31px; /* Fixed position for mobile */
     }
-    .projects-container {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(2, 1fr);
-        overflow: hidden;
-        overflow-y: auto;
+    
+    .experiences-timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
     }
+    
+    .experiences-timeline-item.left,
+    .experiences-timeline-item.right {
+        left: 0;
+    }
+    
+    /* ALL dots positioned the same way on mobile */
+    .experiences-timeline-item::after,
+    .experiences-timeline-item.right::after {
+        left: 17.5px; /* Centered on the mobile timeline (31px - 10px) */
+        transform: translateY(-50%);
+    }
+    
+    .experiences-timeline-item.left .experiences-timeline-content::before,
+    .experiences-timeline-item.right .experiences-timeline-content::before {
+        left: -13px;
+        border-right-color: #003366;
+        border-left-color: transparent;
+    }
+    
+    .experiences-timeline-content {
+        padding: 15px 20px;
+    }
+    
+    .experiences-company-logo {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .experiences-company-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .experiences-company-name {
+        font-size: 1.2rem;
+    }
+    
+    .experiences-position-title {
+        font-size: 1rem;
+    }
+    
     .content-container {
         flex-direction: column;
         padding: 10px;
@@ -278,39 +459,40 @@ html, body{
         margin: 0 auto;
         margin-top: 20px;
     }
-
-    .resume-container {
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-    }
-
-    .resume-container iframe {
-        display: none;
-    }
-
-    .resume-img {
-        display: block;
-        width: 94%;
-        margin: 0;
-        height: 70vh;
-        padding: 0;
-    }
 }
 
 @media (max-width: 480px) {
-    .experiences-container {
-        grid-template-columns: 1fr;
-        grid-template-rows: repeat(2, 1fr);
-        overflow: hidden;
-        overflow-y: auto;
+    .experiences-section-container {
+        padding: 1rem;
     }
-    .projects-container {
-        grid-template-columns: 1fr;
-        grid-template-rows: repeat(4, 1fr);
-        overflow: hidden;
-        overflow-y: auto;
+    
+    .experiences-timeline-item {
+        padding-left: 60px;
+        padding-right: 20px;
     }
+    
+    /* Keep dots centered on smaller mobile screens */
+    .experiences-timeline-item::after,
+    .experiences-timeline-item.right::after {
+        left: 17.5px; /* Still centered on timeline */
+        transform: translateY(-50%);
+    }
+    
+    .experiences-timeline-content {
+        padding: 12px 15px;
+    }
+    
+    .experiences-company-logo {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .experiences-company-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
     .nav-links li {
         margin: 0 10px;
     }
@@ -318,6 +500,7 @@ html, body{
     .nav-links a {
         font-size: 0.9rem;
     }
+    
     .about-section {
         font-size: 1rem;
     }
@@ -325,23 +508,5 @@ html, body{
     .image-section img {
         margin-top: 20px;
         max-width: 150px;
-    }
-
-    .resume-container {
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-    }
-
-    .resume-container iframe {
-        display: none;
-    }
-
-    .resume-img {
-        display: block;
-        width: 94%;
-        margin: 0;
-        height: 70vh;
-        padding: 0;
     }
 }
