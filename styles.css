@@ -1,4 +1,3 @@
-/* Wavy divider between sections */
 .wave-divider {
     width: 75%;
     height: 32px;
@@ -14,7 +13,6 @@
     height: 32px;
 }
 
-/* PROJECTS SECTION - MATCH EXPERIENCES TIMELINE STYLE */
 .projects-section-container {
     width: 100%;
     max-width: 1200px;
@@ -131,7 +129,7 @@ html, body{
 }
 
 main {
-    margin-top: 80px; /* Account for fixed header */
+    margin-top: 80px;
 }
 
 .section {
@@ -141,12 +139,12 @@ main {
     align-items: center;
     justify-content: center;
     position: relative;
-    scroll-margin-top: 90px; /* Ensures anchor scrolls below fixed header */
+    scroll-margin-top: 90px;
 }
 
 .home-section {
     padding-top: 0;
-    margin-top: -80px; /* Remove the extra top spacing */
+    margin-top: -80px;
 }
 
 .content-container {
@@ -207,7 +205,6 @@ main {
     animation: fadeIn 1s ease-in-out;
 }
 
-/* ===== EXPERIENCES SECTION - IMPROVED CENTERING ===== */
 .experiences-section-container {
     width: 100%;
     max-width: 1200px;
@@ -242,7 +239,6 @@ main {
     box-sizing: border-box;
 }
 
-/* IMPROVED DOT POSITIONING - Always centered on timeline */
 .experiences-timeline-item::after {
     content: '';
     position: absolute;
@@ -252,8 +248,7 @@ main {
     border: 4px solid #003366;
     border-radius: 50%;
     top: 50%;
-    /* This ensures the dot is always centered on the timeline */
-    left: calc(100% - 13px); /* For left items, position at right edge minus half dot width */
+    left: calc(100% - 13px);
     transform: translateY(-50%);
     box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
     z-index: 10;
@@ -267,14 +262,13 @@ main {
     left: 50%;
 }
 
-/* Right items need different positioning */
 .experiences-timeline-item.right::after {
-    left: -13px; /* Position at left edge minus half dot width */
+    left: -13px;
 }
 
 .experiences-timeline-content {
     padding: 20px 30px;
-    background: #002244; /* Match button background */
+    background: #002244;
     border-radius: 16px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(0, 123, 255, 0.2);
     border: 1px solid rgba(0, 123, 255, 0.3);
@@ -286,7 +280,7 @@ main {
     transform: translateY(-5px);
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(0, 123, 255, 0.4);
     border-color: rgba(0, 123, 255, 0.5);
-    background: #002244; /* Keep same as button background on hover */
+    background: #002244;
 }
 
 .experiences-timeline-content::before {
@@ -296,19 +290,19 @@ main {
     width: 0;
     height: 0;
     border: 15px solid transparent;
-    display: none; /* Remove the arrows */
+    display: none;
 }
 
 .experiences-timeline-item.left .experiences-timeline-content::before {
     right: -15px;
     border-left-color: #003366;
-    display: none; /* Remove the arrows */
+    display: none;
 }
 
 .experiences-timeline-item.right .experiences-timeline-content::before {
     left: -15px;
     border-right-color: #003366;
-    display: none; /* Remove the arrows */
+    display: none;
 }
 
 .experiences-timeline-header {
@@ -388,10 +382,9 @@ main {
     margin-bottom: 0;
 }
 
-/* Mobile responsiveness - SIMPLIFIED */
 @media (max-width: 768px) {
     .experiences-timeline::after {
-        left: 31px; /* Fixed position for mobile */
+        left: 31px;
     }
     
     .experiences-timeline-item {
@@ -405,10 +398,9 @@ main {
         left: 0;
     }
     
-    /* ALL dots positioned the same way on mobile */
     .experiences-timeline-item::after,
     .experiences-timeline-item.right::after {
-        left: 17.5px; /* Centered on the mobile timeline (31px - 10px) */
+        left: 17.5px;
         transform: translateY(-50%);
     }
     
@@ -471,10 +463,9 @@ main {
         padding-right: 20px;
     }
     
-    /* Keep dots centered on smaller mobile screens */
     .experiences-timeline-item::after,
     .experiences-timeline-item.right::after {
-        left: 17.5px; /* Still centered on timeline */
+        left: 17.5px;
         transform: translateY(-50%);
     }
     
