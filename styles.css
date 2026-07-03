@@ -1156,7 +1156,7 @@ a { color: inherit; text-decoration: none; }
     line-height: 1.3;
     flex-shrink: 0;
   }
-  .xp-date-start, .xp-date-end { display: block; text-align: right; }
+  .xp-date-start, .xp-date-end { display: block; text-align: right; white-space: nowrap; }
 
   /* Projects: smaller image carousel on mobile */
   .proj-slideshow { height: 210px; }
