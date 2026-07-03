@@ -30,7 +30,7 @@
    Reset & Base
    ============================================================ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; background: #030912; }
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -976,21 +976,23 @@ a { color: inherit; text-decoration: none; }
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 28px; height: 28px;
+  width: 32px; height: 32px;
   border-radius: 50%;
-  background: rgba(3, 9, 18, 0.65);
-  border: 1px solid var(--border-h);
+  background: rgba(3, 9, 18, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   color: var(--text);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-size: 0.8rem;
-  transition: background 0.2s;
+  padding: 0;
+  transition: background 0.2s, border-color 0.2s;
   z-index: 5;
 }
 
-.ss-nav-btn:hover { background: rgba(13, 27, 62, 0.85); }
+.ss-nav-btn svg { width: 15px; height: 15px; pointer-events: none; }
+
+.ss-nav-btn:hover { background: rgba(13, 27, 62, 0.9); border-color: rgba(255, 255, 255, 0.35); }
 .ss-nav-btn.prev { left: 0.5rem; }
 .ss-nav-btn.next { right: 0.5rem; }
 
@@ -1128,6 +1130,7 @@ a { color: inherit; text-decoration: none; }
   .tile { grid-column: span 1 !important; grid-row: span 1 !important; }
   .tile-inner { position: relative; inset: auto; min-height: 180px; }
   .tile.tile-profile .tile-inner { min-height: 240px; }
+  .tile-links .tile-inner { min-height: auto; }
 }
 
 @media (max-width: 680px) {
@@ -1140,4 +1143,20 @@ a { color: inherit; text-decoration: none; }
   .xp-entry::before { left: calc(1.25rem - 5px); }
   .proj-gallery-wrap { padding: 0.5rem 1rem 2.5rem; }
   .page-title { font-size: 1.9rem; }
+
+  /* Experience: allow date to wrap onto two lines; give title more room */
+  .xp-date {
+    white-space: normal;
+    max-width: 62px;
+    text-align: right;
+    line-height: 1.3;
+    flex-shrink: 0;
+  }
+
+  /* Projects: smaller image carousel on mobile */
+  .proj-slideshow { height: 210px; }
+
+  /* Projects: taller max-height so bullets aren't clipped */
+  .proj-item.active .proj-expanded { max-height: 1400px; }
+  .xp-entry.active .xp-body { max-height: 800px; }
 }
