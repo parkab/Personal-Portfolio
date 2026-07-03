@@ -1,42 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap">
-    <link rel="icon" href="personal_favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects - Parth Kabaria</title>
+  <link rel="icon" href="personal_favicon.png" type="image/png" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <header class="header">
-        <ul class="nav-links">
-            <a href="/" class="nav-link">Home</a>
-            <a href="experiences" class="nav-link">Experiences</a>
-            <a href="projects" class="nav-link">Projects</a>
-            <a href="resume" class="nav-link">Resume</a>
-        </ul>
+
+  <nav class="navbar">
+    <a href="index.html" class="navbar-brand"><span>Parth Kabaria</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html"       class="nav-link">Home</a></li>
+      <li><a href="experiences.html" class="nav-link">Experience</a></li>
+      <li><a href="projects.html"    class="nav-link">Projects</a></li>
+    </ul>
+  </nav>
+
+  <div class="proj-page">
+
+    <header class="proj-page-header reveal">
+      <h1 class="page-title"><span>My Projects</span></h1>
+      <p style="font-size:0.9rem;color:var(--text);margin-top:0.4rem;">Click any project or use ↑↓ keys to navigate</p>
+      <div class="page-rule"></div>
     </header>
 
-    <div class="projects-container">
-        <div class="project-item">
-            <a href="https://github.com/parkab/Internship-Tracker" class="experience-title">Internship Tracker</a>
-            <p class="project-description">A full-stack application developed with Angular, Bootstrap, Node.js, Express.js, and MongoDB, featuring registration, login, and CRUD functionality for internship application data.</p>
+    <!-- ─────────────────────────────────────────────────────────
+         HOW TO ADD A PROJECT:
+         1. Copy one .proj-item block and paste at the end
+         2. Give it a unique id (matches home page link)
+         3. Update title, emoji, date, tags, description, links
+         4. For images: replace the .proj-slide-ph div with:
+              <div class="proj-slide active">
+                <img src="images/your-image.jpg" alt="..." />
+              </div>
+            Add more .proj-slide divs for multiple shots —
+            the JS slideshow handles everything automatically
+         ───────────────────────────────────────────────────────── -->
+
+    <div class="proj-gallery-wrap">
+
+      <!-- ── CandidATS ──────────────────────────────── -->
+      <div class="proj-item" id="candidats">
+        <div class="proj-collapsed">
+          <span class="proj-collapsed-title">CandidATS</span>
+          <a href="https://candid-ats.vercel.app/" target="_blank" class="proj-tab-link">Live Demo ↗</a>
         </div>
-        <div class="project-item">
-            <a href="https://github.com/jorkroc/pirateGame" class="experience-title">Pirate Game</a>
-            <p class="project-description">A collaborative Python game hackathon project using Pygame, where players defeat groups of pirates with various abilities, upgrade their attack power and skills, and ultimately face a final boss.</p>
+        <div class="proj-expanded">
+          <div class="proj-expanded-inner">
+            <div class="proj-slideshow">
+              <div class="proj-slide active"><img src="project_photos/candid1.png" alt="CandidATS screenshot 1" /></div>
+              <div class="proj-slide"><img src="project_photos/candid2.png" alt="CandidATS screenshot 2" /></div>
+              <div class="proj-slide"><img src="project_photos/candid3.png" alt="CandidATS screenshot 3" /></div>
+              <button class="ss-nav-btn prev" aria-label="Previous">&#8249;</button>
+              <button class="ss-nav-btn next" aria-label="Next">&#8250;</button>
+              <div class="ss-controls"></div>
+            </div>
+            <div class="proj-date-tags">
+              <span class="proj-year"></span>
+            </div>
+            <ul class="xp-bullets"></ul>
+          </div>
         </div>
-        <div class="project-item">
-            <a href="https://jenkinsons.com/aquarium/" class="experience-title">Coral Reef Sensor</a>
-            <p class="project-description">Color and light sensor code was developed to assess underwater coral reef health, with data transmitted wirelessly using C++ and Arduino. The project was demonstrated at Jenkinson’s Aquarium in Point Pleasant, NJ.</p>
+      </div>
+
+      <!-- ── Decibel ────────────────────────────────── -->
+      <div class="proj-item" id="decibel">
+        <div class="proj-collapsed">
+          <span class="proj-collapsed-title">Decibel - Verizon Smart Campus</span>
+          <a href="https://decibel-njit.vercel.app" target="_blank" class="proj-tab-link">Live Demo ↗</a>
         </div>
-        <div class="project-item">
-            <a href="https://devpost.com/software/study-buddies-103svj" class="experience-title">Study Buddies</a>
-            <p class="project-description">A website and GUI designed with HTML, JavaScript, and CSS to help students manage time and communicate effectively. The project involved virtual collaboration with a team of five.</p>
+        <div class="proj-expanded">
+          <div class="proj-expanded-inner">
+            <div class="proj-slideshow">
+              <div class="proj-slide active"><img src="project_photos/decibel1.png" alt="Decibel screenshot 1" /></div>
+              <div class="proj-slide"><img src="project_photos/decibel2.png" alt="Decibel screenshot 2" /></div>
+              <div class="proj-slide"><img src="project_photos/decibel3.png" alt="Decibel screenshot 3" /></div>
+              <button class="ss-nav-btn prev" aria-label="Previous">&#8249;</button>
+              <button class="ss-nav-btn next" aria-label="Next">&#8250;</button>
+              <div class="ss-controls"></div>
+            </div>
+            <div class="proj-date-tags">
+              <div class="proj-tags">
+                <span class="proj-tag">React Native</span>
+                <span class="proj-tag">Expo</span>
+                <span class="proj-tag">C++</span>
+                <span class="proj-tag">Arduino</span>
+                <span class="proj-tag">IoT</span>
+              </div>
+              <span class="proj-year">October 2025 - March 2026</span>
+            </div>
+            <ul class="xp-bullets">
+              <li>Captained a 6-member team to win $3,000 against 100+ teams from Northeastern, Rutgers, and NJIT</li>
+              <li>Built a cross-platform prototype in React Native and Expo with reusable components and state logic</li>
+              <li>Rendered real-time occupancy and noise data to visualize campus study space availability for commuters</li>
+              <li>Prototyped Arduino IoT hardware in C++ with sound and IR distance sensors for backend ingestion</li>
+            </ul>
+          </div>
         </div>
+      </div>
+
+      <!-- ── Athena ─────────────────────────────────── -->
+      <div class="proj-item" id="athena">
+        <div class="proj-collapsed">
+          <span class="proj-collapsed-title">Athena</span>
+          <a href="https://athenas.tech" target="_blank" class="proj-tab-link">Live Demo ↗</a>
+        </div>
+        <div class="proj-expanded">
+          <div class="proj-expanded-inner">
+            <div class="proj-slideshow">
+              <div class="proj-slide active"><img src="project_photos/athena1.png" alt="Athena screenshot 1" /></div>
+              <div class="proj-slide"><img src="project_photos/athena2.png" alt="Athena screenshot 2" /></div>
+              <div class="proj-slide"><img src="project_photos/athena3.png" alt="Athena screenshot 3" /></div>
+              <button class="ss-nav-btn prev" aria-label="Previous">&#8249;</button>
+              <button class="ss-nav-btn next" aria-label="Next">&#8250;</button>
+              <div class="ss-controls"></div>
+            </div>
+            <div class="proj-date-tags">
+              <div class="proj-tags">
+                <span class="proj-tag">Next.js</span>
+                <span class="proj-tag">TypeScript</span>
+                <span class="proj-tag">MongoDB</span>
+                <span class="proj-tag">Gemini API</span>
+                <span class="proj-tag">Chart.js</span>
+              </div>
+              <span class="proj-year">September 2025 - October 2025</span>
+            </div>
+            <ul class="xp-bullets">
+              <li>Directed a 4-member team to ship a full-stack AI platform in Next.js, TypeScript, and MongoDB</li>
+              <li>Integrated the Gemini API to generate personalized plans and power an AI mentorship chatbot</li>
+              <li>Constructed an interactive Chart.js dashboard and managed full deployment on Vercel</li>
+              <li>Secured user authentication using JWT and bcrypt with reliable frontend-backend communication</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Lexicogs ───────────────────────────────── -->
+      <div class="proj-item" id="lexicogs">
+        <div class="proj-collapsed">
+          <span class="proj-collapsed-title">Lexicogs</span>
+          <a href="https://lexicogs.vercel.app" target="_blank" class="proj-tab-link">Live Demo ↗</a>
+        </div>
+        <div class="proj-expanded">
+          <div class="proj-expanded-inner">
+            <div class="proj-slideshow">
+              <div class="proj-slide active"><img src="project_photos/lexicogs1.png" alt="Lexicogs screenshot 1" /></div>
+              <div class="proj-slide"><img src="project_photos/lexicogs2.png" alt="Lexicogs screenshot 2" /></div>
+              <div class="proj-slide"><img src="project_photos/lexicogs3.png" alt="Lexicogs screenshot 3" /></div>
+              <button class="ss-nav-btn prev" aria-label="Previous">&#8249;</button>
+              <button class="ss-nav-btn next" aria-label="Next">&#8250;</button>
+              <div class="ss-controls"></div>
+            </div>
+            <div class="proj-date-tags">
+              <div class="proj-tags">
+                <span class="proj-tag">React</span>
+                <span class="proj-tag">JavaScript</span>
+                <span class="proj-tag">HTML</span>
+                <span class="proj-tag">CSS</span>
+              </div>
+              <span class="proj-year">November 2024 - December 2024</span>
+            </div>
+            <ul class="xp-bullets">
+              <li>Coordinated with a team of 3 at HackNJIT 2024 to create a steampunk-themed word correlation React application</li>
+              <li>Crafted selective word filtering and timed gameplay logic where players identify target words from a moving dataset</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- .proj-gallery-wrap -->
+
+    <div class="waves-footer" aria-hidden="true">
+      <svg viewBox="0 24 150 28" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <defs><path id="wproj" d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18v44h-352z"/></defs>
+        <g class="wave-parallax">
+          <use href="#wproj" x="48" y="0" fill="rgba(20,50,160,0.4)"/>
+          <use href="#wproj" x="48" y="3" fill="rgba(29,78,216,0.28)"/>
+          <use href="#wproj" x="48" y="5" fill="rgba(96,165,250,0.18)"/>
+          <use href="#wproj" x="48" y="7" fill="rgba(13,27,62,0.3)"/>
+        </g>
+      </svg>
     </div>
 
-    <script src="scripts.js"></script>
+  </div><!-- .proj-page -->
+
+
+
+  <script src="scripts.js"></script>
 </body>
 </html>

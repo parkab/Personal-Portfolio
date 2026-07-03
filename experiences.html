@@ -1,43 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap">
-    <link rel="icon" href="personal_favicon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Experience — Parth Kabaria</title>
+  <link rel="icon" href="personal_favicon.png" type="image/png" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <header class="header">
-        <ul class="nav-links">
-            <a href="/" class="nav-link">Home</a>
-            <a href="experiences" class="nav-link">Experiences</a>
-            <a href="projects" class="nav-link">Projects</a>
-            <a href="resume" class="nav-link">Resume</a>
-        </ul>
+
+  <nav class="navbar">
+    <a href="index.html" class="navbar-brand">Parth <span>Kabaria</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html"       class="nav-link">Home</a></li>
+      <li><a href="experiences.html" class="nav-link">Experience</a></li>
+      <li><a href="projects.html"    class="nav-link">Projects</a></li>
+    </ul>
+  </nav>
+
+  <div class="exp-page">
+
+    <header class="exp-page-header reveal">
+      <h1 class="page-title"><span>Work Experience</span></h1>
+      <p style="font-size:0.9rem;color:var(--text);margin-top:0.4rem;">Click any role or use ↑↓ keys to navigate</p>
+      <div class="page-rule"></div>
     </header>
 
-    <div class="experiences-container">
-        <div class="experience-item">
-            <a href="https://nj.pseg.com/" class="experience-title">PSEG Internship</a>
-            <p class="experience-description">
-                Interned on the Asset Strategy and Reliability team, using data analytics to enhance company performance. Extracted and transformed data with SQL, and created visualizations and reports using PowerBI and Excel.</p>
+    <!-- ─────────────────────────────────────────────────────
+         TO ADD A NEW EXPERIENCE:
+         1. Copy one .xp-entry block below
+         2. Give it a unique id (used by home page links)
+         3. Update logo src, company name, role, date, bullets
+         4. Alternate left/right positioning is handled by CSS —
+            just append to the list in chronological order
+         ───────────────────────────────────────────────────── -->
+    <div class="exp-list-wrap">
+
+      <!-- Barclays -->
+      <div class="xp-entry" id="barclays">
+        <div class="xp-card">
+          <div class="xp-header">
+            <div class="xp-logo-wrap">
+              <img src="logos/barclays.png" alt="Barclays" />
+            </div>
+            <div class="xp-header-text">
+              <div class="xp-co-name">Barclays</div>
+              <div class="xp-role">Technology Analyst Intern</div>
+            </div>
+            <div class="xp-date">Jun – Aug 2026</div>
+          </div>
+          <div class="xp-body">
+            <ul class="xp-bullets">
+              <li>Current 2026 Summer Technology Analyst Intern</li>
+            </ul>
+          </div>
         </div>
-        <div class="experience-item">
-            <a href="https://research.njit.edu/" class="experience-title">NJIT Whiteboard Robot Research</a>
-            <p class="experience-description">Processed colored light data was processed using Arduino and C++ to calculate the position of a robot that magnetically attaches to whiteboards and responds to colored projector light and shadows.</p>
+      </div>
+
+      <!-- Merck -->
+      <div class="xp-entry" id="merck">
+        <div class="xp-card">
+          <div class="xp-header">
+            <div class="xp-logo-wrap">
+              <img src="logos/merck.png" alt="Merck" />
+            </div>
+            <div class="xp-header-text">
+              <div class="xp-co-name">Merck</div>
+              <div class="xp-role">Software Engineer Intern</div>
+            </div>
+            <div class="xp-date">Jun – Aug 2025</div>
+          </div>
+          <div class="xp-body">
+            <ul class="xp-bullets">
+              <li>Engineered Python backend workflows with the Signals Notebook API to link template data and run computations</li>
+              <li>Architected flexible experiment templates digitizing handwritten records with cross-department reuse potential</li>
+              <li>Accelerated data entry, retrieval, and cross-study comparison by 25%+ by automating multi-report consolidation</li>
+              <li>Saved 2.5 hours per global R&amp;D PMO meeting by optimizing SharePoint management with Power Automate</li>
+            </ul>
+          </div>
         </div>
-        <div class="experience-item">
-            <a href="https://dellicker.com/" class="experience-title">Dellicker Strategies Internship</a>
-            <p class="experience-description">Acquired cybersecurity, information technology, and project management skills, conducted company research on current cybersecurity threats, and engaged with stakeholders in business meetings.</p>
+      </div>
+
+      <!-- Quantum Pulse Consulting -->
+      <div class="xp-entry" id="qpc">
+        <div class="xp-card">
+          <div class="xp-header">
+            <div class="xp-logo-wrap">
+              <img src="logos/qpc.jpg" alt="Quantum Pulse Consulting" />
+            </div>
+            <div class="xp-header-text">
+              <div class="xp-co-name">Quantum Pulse Consulting</div>
+              <div class="xp-role">Software Engineer Intern</div>
+            </div>
+            <div class="xp-date">Jan – Apr 2025</div>
+          </div>
+          <div class="xp-body">
+            <ul class="xp-bullets">
+              <li>Developed a responsive full-stack web application frontend using React, Tailwind CSS, and Vite</li>
+              <li>Integrated RESTful APIs with a Django and PostgreSQL backend to enable seamless bidirectional data flow</li>
+              <li>Shipped 20+ client-requested features including an AI chatbot integration across 8 Agile sprints</li>
+            </ul>
+          </div>
         </div>
-        <div class="experience-item">
-            <a href="https://www.firstinspires.org/robotics/ftc" class="experience-title">FIRST Tech Challenge Robotics</a>
-            <p class="experience-description">Designed and built three robots with claw or belt systems as a build team captain. Addressed software and hardware issues in Java and led a team of 11 high school students, keeping them motivated and organized.</p>
+      </div>
+
+      <!-- PSEG -->
+      <div class="xp-entry" id="pseg">
+        <div class="xp-card">
+          <div class="xp-header">
+            <div class="xp-logo-wrap">
+              <img src="logos/pseg.png" alt="PSEG" />
+            </div>
+            <div class="xp-header-text">
+              <div class="xp-co-name">Public Service Enterprise Group (PSEG)</div>
+              <div class="xp-role">Data Analytics Intern</div>
+            </div>
+            <div class="xp-date">Jun – Aug 2024</div>
+          </div>
+          <div class="xp-body">
+            <ul class="xp-bullets">
+              <li>Built an SQL-connected Power BI dashboard informing multimillion-dollar power grid infrastructure projects</li>
+              <li>Extracted and transformed 1000s of raw data values via complex SQL queries to evaluate power pole quality</li>
+              <li>Produced Power BI and Excel visualizations analyzing budget allocation to guide capital project prioritization</li>
+            </ul>
+          </div>
         </div>
+      </div>
+
+      <!-- NJIT Research Lab -->
+      <div class="xp-entry" id="njit">
+        <div class="xp-card">
+          <div class="xp-header">
+            <div class="xp-logo-wrap">
+              <img src="logos/njit.jpg" alt="NJIT" />
+            </div>
+            <div class="xp-header-text">
+              <div class="xp-co-name">NJIT Mechatronics Research Lab</div>
+              <div class="xp-role">Robotics Research Programmer</div>
+            </div>
+            <div class="xp-date">Oct 2023 – May 2024</div>
+          </div>
+          <div class="xp-body">
+            <ul class="xp-bullets">
+              <li>Programmed magnetic whiteboard-climbing robots in C++ to respond to colored light and shadow inputs</li>
+              <li>Implemented a custom Arduino algorithm computing real-time position from projector-driven sensor data</li>
+              <li>Presented research at NJIT's Honors Interdisciplinary Research Forum in December 2023</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dellicker Strategies -->
+      <div class="xp-entry" id="dellicker">
+        <div class="xp-card">
+          <div class="xp-header">
+            <div class="xp-logo-wrap">
+              <img src="logos/dellicker.png" alt="Dellicker Strategies" />
+            </div>
+            <div class="xp-header-text">
+              <div class="xp-co-name">Dellicker Strategies</div>
+              <div class="xp-role">Cybersecurity Intern</div>
+            </div>
+            <div class="xp-date">Sep 2022 – Jun 2023</div>
+          </div>
+          <div class="xp-body">
+            <ul class="xp-bullets">
+              <li>Applied cybersecurity, IT, and project management skills to support security initiatives in a mid-sized company setting</li>
+              <li>Conducted research on emerging cybersecurity threats, including recent attacks targeting local school systems</li>
+              <li>Reported threat analysis findings and security recommendations to stakeholders during business meetings</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- .exp-list-wrap -->
+
+    <div class="waves-footer" aria-hidden="true">
+      <svg viewBox="0 24 150 28" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <defs><path id="wexp" d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18v44h-352z"/></defs>
+        <g class="wave-parallax">
+          <use href="#wexp" x="48" y="0" fill="rgba(20,50,160,0.4)"/>
+          <use href="#wexp" x="48" y="3" fill="rgba(29,78,216,0.28)"/>
+          <use href="#wexp" x="48" y="5" fill="rgba(96,165,250,0.18)"/>
+          <use href="#wexp" x="48" y="7" fill="rgba(13,27,62,0.3)"/>
+        </g>
+      </svg>
     </div>
 
-    <script src="scripts.js"></script>
+  </div><!-- .exp-page -->
+
+
+
+  <script src="scripts.js"></script>
 </body>
 </html>
