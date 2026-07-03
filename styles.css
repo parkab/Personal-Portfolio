@@ -30,7 +30,11 @@
    Reset & Base
    ============================================================ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; background: #030912; }
+html {
+  scroll-behavior: smooth;
+  background: linear-gradient(to bottom, #0d1b3e 0%, #1d3b85 100%);
+  min-height: 100%;
+}
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -1152,6 +1156,7 @@ a { color: inherit; text-decoration: none; }
     line-height: 1.3;
     flex-shrink: 0;
   }
+  .xp-date-start, .xp-date-end { display: block; text-align: right; }
 
   /* Projects: smaller image carousel on mobile */
   .proj-slideshow { height: 210px; }

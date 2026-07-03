@@ -11,8 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ── Active nav link ─────────────────────────────── */
   const page = location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.nav-link').forEach(a => {
-    a.classList.toggle('active', a.getAttribute('href') === page ||
-      (page === '' && a.getAttribute('href') === 'index.html'));
+    const href = a.getAttribute('href');
+    a.classList.toggle('active', href === page ||
+      (page === 'index.html' && href === './'));
   });
 
   /* ── Reveal on scroll ────────────────────────────── */
