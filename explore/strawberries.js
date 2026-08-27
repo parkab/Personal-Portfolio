@@ -86,7 +86,10 @@ export const STRAWBERRIES = [
     subtitle: 'Software Engineer Intern',
     date: 'Jun - Aug 2026',
     bullets: [
-      'Current 2026 Summer Technology Analyst Intern',
+      'Delivered tooling for a distributed financial platform, replacing manual dependency tracing across pipelines and events',
+      'Coded backend Java logic across event flows to find upstream and downstream impacts using Spring, Tomcat, and PuTTY',
+      'Wrote a Plotly.js frontend rendering relationship paths, status states, and structured outputs for faster analysis',
+      'Automated generation of 10,000+ synthetic data rows in Python via pandas, SDV, and Faker, preserving referential integrity',
     ],
     position: { x: -16, y: 34.0, z: -114 }, // peak roof (h33) — final summit above the crest
   },
