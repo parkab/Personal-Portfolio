@@ -1,0 +1,13 @@
+# Local QA harnesses, headless Chrome profiles and their screenshot output.
+# Development-only: nothing here ships with the site.
+explore/dev/
+
+# Claude Code local state — includes a whole scratch worktree of old design
+# experiments. Delete the folder if you don't want it on disk either.
+.claude/
+
+# Editor / OS cruft
+.vscode/
+.DS_Store
+Thumbs.db
+desktop.ini

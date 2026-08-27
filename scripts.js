@@ -1,3 +1,22 @@
+/* ── Active nav link ───────────────────────────────────
+   Runs IMMEDIATELY, not on DOMContentLoaded: this file is a classic script
+   at the end of <body>, so the navbar is already parsed, and on /explore/
+   DOMContentLoaded additionally waits for the deferred module graph (three.js
+   off a CDN) — which left the tab unhighlighted for a second on a cold load.
+
+   Compare resolved, extension-stripped paths. Nav links use the clean routes
+   GitHub Pages serves (/experiences, /projects, /explore/), but a visitor can
+   still land on /projects.html, and /explore/ is a directory page — so every
+   spelling has to normalize to the same string. */
+(() => {
+  const normalize = p => p.replace(/\.html$/, '').replace(/\/index$/, '/');
+  const here = normalize(location.pathname);
+  document.querySelectorAll('.nav-link').forEach(a => {
+    const there = normalize(new URL(a.getAttribute('href'), location.href).pathname);
+    a.classList.toggle('active', there === here);
+  });
+})();
+
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ── Navbar scroll ───────────────────────────────── */
@@ -7,14 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', tick, { passive: true });
     tick();
   }
-
-  /* ── Active nav link ─────────────────────────────── */
-  const page = location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.nav-link').forEach(a => {
-    const href = a.getAttribute('href');
-    a.classList.toggle('active', href === page ||
-      (page === 'index.html' && href === './'));
-  });
 
   /* ── Reveal on scroll ────────────────────────────── */
   const revealIO = new IntersectionObserver(

@@ -1,0 +1,438 @@
+/* ============================================================
+   Explore page — site shell + retro-monitor bezel + in-stage HUD
+   ------------------------------------------------------------
+   Loaded AFTER ../styles.css, so the navbar, night-sky gradient
+   and wave footer come from the site and only the game frame is
+   defined here. Everything the game draws lives inside
+   #game-stage, which is the single source of truth for the
+   render size (main.js observes it) — that is what lets the
+   fullscreen toggle be a pure CSS class swap with no reload.
+   ============================================================ */
+
+/* Everything from the navbar down to the waves has to fit one screen with
+   no page scroll, the way the home page does. --chrome is the total height
+   of everything that ISN'T the game screen (navbar + header + cabinet
+   padding/margin + waves); the screen's max-height is the remainder.
+   Keep --chrome in sync if any of those change — dev/checkpage.js asserts
+   the page doesn't scroll. */
+.explore-page {
+  --chrome: 358px;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding-top: 64px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.explore-header {
+  text-align: center;
+  padding: 1.5rem 1.5rem 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.explore-sub {
+  margin-top: 0.4rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* ── Retro monitor cabinet ────────────────────────────── */
+
+.cabinet {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto 1.5rem;
+  padding: 12px;
+  background: linear-gradient(180deg, #16233f 0%, #101a30 62%, #0b1326 100%);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+
+.cabinet-screen {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: calc(100dvh - var(--chrome));
+  overflow: hidden;
+  border-radius: 8px;
+  background: #cfe4d4; /* game sky, so first paint isn't a black flash */
+  /* inner bevel: the glass sitting behind the plastic */
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 0, 0, 0.55),
+    inset 0 2px 14px rgba(0, 0, 0, 0.45);
+  touch-action: none; /* swipes are dashes, never page scroll/zoom */
+}
+
+/* ── Fullscreen: CSS-expand (native FS is requested on top of it
+      where supported, but the layout never depends on it) ────── */
+
+body.explore-fullscreen { overflow: hidden; }
+
+body.explore-fullscreen .cabinet {
+  position: fixed;
+  inset: 0;
+  z-index: 900; /* above the site navbar (500) */
+  width: 100%;   /* overrides the phone tier's height-derived width cap */
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: #000;
+}
+
+body.explore-fullscreen .cabinet-screen {
+  height: 100%;
+  max-height: none;
+  aspect-ratio: auto;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* ── The canvas + overlay layers inside the screen ────── */
+
+#game {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+
+#hud {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  font-family: system-ui, sans-serif;
+}
+
+/* Query container for the paper cards: they must size off the frame, which
+   the viewport can't tell them (a short inlaid bezel and a tall phone can
+   share a viewport). See the @container rules in paper.css. */
+#card-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  container-type: size;
+  container-name: stage;
+}
+#card-layer .paper-scrim { pointer-events: auto; }
+
+/* ── Controls / fullscreen buttons (present in BOTH views) ─ */
+
+#stage-buttons {
+  position: absolute;
+  z-index: 30;
+  top: calc(10px + env(safe-area-inset-top));
+  right: calc(10px + env(safe-area-inset-right));
+  display: flex;
+  gap: 8px;
+}
+
+.stage-btn {
+  padding: 6px 13px;
+  border-radius: 999px;
+  border: 1px solid rgba(238, 245, 234, 0.45);
+  background: rgba(20, 40, 25, 0.55);
+  color: #eef5ea;
+  font-family: system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  transition: background 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.stage-btn:hover { background: rgba(20, 40, 25, 0.8); }
+.stage-btn:focus-visible { outline: 2px solid #eef5ea; outline-offset: 2px; }
+
+.stage-btn--icon {
+  width: 32px;
+  padding: 6px 0;
+  text-align: center;
+  font-size: 15px;
+}
+
+/* ── Strawberry teaser prompt ─────────────────────────── */
+
+.berry-teaser {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  background: rgba(20, 40, 25, 0.78);
+  color: #eef5ea;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.15s;
+  pointer-events: none;
+}
+.berry-teaser.visible { opacity: 1; }
+.berry-teaser .key {
+  display: inline-block;
+  background: #eef5ea;
+  color: #22331f;
+  border-radius: 4px;
+  padding: 0 6px;
+  margin-left: 8px;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+/* ── Strawberry info panel ────────────────────────────── */
+
+.berry-panel {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  width: 330px;
+  max-width: 84%;
+  background: #faf6e8;
+  color: #2c3a2c;
+  border-radius: 10px;
+  border-top: 3px solid var(--accent, #2fa08c);
+  box-shadow: 0 6px 24px rgba(20, 40, 25, 0.28);
+  padding: 13px 16px 14px;
+  font-size: 13.5px;
+  line-height: 1.45;
+  opacity: 0;
+  transition: opacity 0.15s;
+  pointer-events: none;
+}
+.berry-panel.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.berry-panel .cat {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent, #2fa08c);
+  margin-bottom: 1px;
+}
+.berry-panel h2 {
+  font-size: 16.5px;
+  margin-bottom: 1px;
+}
+.berry-panel .sub {
+  font-size: 13px;
+  font-weight: 600;
+  color: #4a5c44;
+}
+.berry-panel .date {
+  font-size: 12px;
+  color: #6b7a63;
+  margin-bottom: 8px;
+}
+.berry-panel ul {
+  margin: 0 0 10px 17px;
+}
+.berry-panel li { margin-bottom: 4px; }
+.berry-panel .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.berry-panel .tag {
+  background: rgba(47, 112, 72, 0.13);
+  color: #3c5a36;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 11.5px;
+}
+.berry-panel .link {
+  display: inline-block;
+  background: var(--accent, #2fa08c);
+  color: #fff;
+  text-decoration: none;
+  padding: 6px 13px;
+  border-radius: 6px;
+  font-size: 12.5px;
+  font-weight: 600;
+}
+.berry-panel .link:hover { filter: brightness(1.08); }
+
+/* ── Moonberry photo (inside the berry panel) ─────────── */
+
+.moon-photo {
+  margin: 6px auto 2px;
+  width: 230px;
+  max-width: 100%;
+}
+.moon-photo img,
+.moon-photo .photo-placeholder {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 6px;
+}
+.moon-photo img { object-fit: cover; display: block; }
+.moon-photo .photo-placeholder {
+  background: #3a4256;
+  color: #9daac4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 12.5px;
+}
+.moon-photo .ph-icon { font-size: 40px; }
+
+/* ── Touch controls (revealed on first touch) ─────────── */
+/* Sizes come from these three custom properties so the whole
+   cluster scales with the frame instead of being retuned. */
+
+#touch-ui {
+  --joy: 112px;
+  --knob: 48px;
+  --btn: 70px;
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: none;
+  pointer-events: none;
+  font-family: system-ui, sans-serif;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+body.touch-active #touch-ui { display: block; }
+
+#joystick {
+  position: absolute;
+  right: calc(14px + env(safe-area-inset-right));
+  bottom: calc(14px + env(safe-area-inset-bottom));
+  width: var(--joy);
+  height: var(--joy);
+  border-radius: 50%;
+  background: rgba(20, 40, 25, 0.28);
+  border: 2px solid rgba(238, 245, 234, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+  touch-action: none;
+}
+#joystick-knob {
+  width: var(--knob);
+  height: var(--knob);
+  border-radius: 50%;
+  background: rgba(238, 245, 234, 0.75);
+}
+
+.touch-btn {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(20, 40, 25, 0.45);
+  color: #eef5ea;
+  border: 2px solid rgba(238, 245, 234, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(var(--btn) * 0.19);
+  font-weight: 600;
+  pointer-events: auto;
+  touch-action: none;
+}
+.touch-btn.pressed { background: rgba(238, 245, 234, 0.4); }
+
+#btn-jump {
+  left: calc(14px + env(safe-area-inset-left));
+  bottom: calc(22px + env(safe-area-inset-bottom));
+  width: var(--btn);
+  height: var(--btn);
+}
+#btn-down {
+  left: calc(14px + var(--btn) * 1.14 + env(safe-area-inset-left));
+  bottom: calc(14px + env(safe-area-inset-bottom));
+  width: calc(var(--btn) * 0.72);
+  height: calc(var(--btn) * 0.72);
+  font-size: calc(var(--btn) * 0.22);
+}
+#btn-respawn {
+  left: calc(14px + var(--btn) * 1.34 + env(safe-area-inset-left));
+  bottom: calc(14px + var(--btn) * 0.86 + env(safe-area-inset-bottom));
+  width: calc(var(--btn) * 0.56);
+  height: calc(var(--btn) * 0.56);
+  font-size: calc(var(--btn) * 0.27);
+}
+
+/* ── Responsive ───────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .explore-page { --chrome: 334px; }
+  .cabinet { max-width: none; margin-inline: 0.75rem; }
+}
+
+/* Phones: a portrait frame and a proportionally smaller control cluster.
+   Capping max-HEIGHT alone would leave the frame full-bleed wide and still
+   push the waves past the fold, so the CABINET's width is capped by the
+   height available instead — the frame then shrinks on BOTH axes together
+   and stays centered, fitting one screen at every phone size. The +24px is
+   the cabinet's own horizontal padding, which isn't part of the 3:4 screen.
+   The header and the wave footer also shrink here; at 360px wide there is
+   simply no room for the desktop-height waves plus a usable frame. */
+@media (max-width: 680px) {
+  .explore-page { --chrome: 298px; }
+  .explore-header { padding: 1rem 1.25rem 0.7rem; }
+  .explore-header .page-title { font-size: 1.55rem; }
+  .explore-sub { font-size: 0.8rem; margin-top: 0.35rem; }
+  .explore-page .waves-footer,
+  .explore-page .waves-footer svg { height: 70px; }
+  .cabinet {
+    width: calc(100% - 2.6rem);
+    max-width: calc((100dvh - var(--chrome)) * 3 / 4 + 24px);
+    margin-inline: auto;
+    padding: 12px;
+    border-radius: 13px;
+  }
+  .cabinet-screen { aspect-ratio: 3 / 4; }
+  #touch-ui { --joy: 84px; --knob: 36px; --btn: 54px; }
+  .stage-btn { padding: 5px 11px; font-size: 12px; }
+  .stage-btn--icon { width: 28px; padding: 5px 0; }
+  .berry-panel { width: 270px; font-size: 12.5px; padding: 11px 13px 12px; }
+  .berry-panel h2 { font-size: 15px; }
+  .moon-photo { width: 190px; }
+  .moon-photo img,
+  .moon-photo .photo-placeholder { width: 100%; }
+}
+
+/* Landscape phones: almost no vertical room. Everything but the frame is
+   cut to the bone (the subtitle goes — the fullscreen button it points at
+   is right there on the frame), and the width is height-derived as above so
+   the frame stays 16:9 instead of a letterboxed sliver. */
+@media (max-height: 460px) and (max-width: 940px) {
+  .explore-page { --chrome: 190px; }
+  .explore-header { padding: 0.5rem 1.25rem 0.4rem; }
+  .explore-header .page-title { font-size: 1.15rem; }
+  .explore-sub { display: none; }
+  .explore-page .waves-footer,
+  .explore-page .waves-footer svg { height: 44px; }
+  .cabinet {
+    width: calc(100% - 1.6rem);
+    max-width: calc((100dvh - var(--chrome)) * 16 / 9 + 24px);
+    margin-bottom: 0.6rem;
+  }
+  .cabinet-screen { aspect-ratio: 16 / 9; }
+  #touch-ui { --joy: 76px; --knob: 32px; --btn: 50px; }
+}
+
+/* ── Fullscreen: the frame just got much bigger, so the on-screen
+      controls scale up with it on every device. These sit after the
+      media queries AND out-specific them, so they win either way. ── */
+
+body.explore-fullscreen #touch-ui { --joy: 138px; --knob: 58px; --btn: 88px; }
+
+body.explore-fullscreen .stage-btn {
+  padding: 8px 17px;
+  font-size: 15px;
+  border-radius: 999px;
+}
+body.explore-fullscreen .stage-btn--icon { width: 38px; padding: 8px 0; font-size: 17px; }
+body.explore-fullscreen #stage-buttons { gap: 10px; }

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Play - Parth Kabaria</title>
+  <link rel="icon" href="/personal_favicon.png" type="image/png" />
+
+  <!-- Site shell: navbar, night-sky background, wave footer -->
+  <link rel="stylesheet" href="/styles.css" />
+  <!-- Hand-drawn card system (Controls + Welcome) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Patrick+Hand&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="paper.css" />
+  <!-- Game page + in-stage HUD -->
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="/" class="navbar-brand">Parth <span>Kabaria</span></a>
+    <ul class="nav-links">
+      <li><a href="/"             class="nav-link">Home</a></li>
+      <li><a href="/experiences/" class="nav-link">Experience</a></li>
+      <li><a href="/projects/"    class="nav-link">Projects</a></li>
+      <li><a href="/explore/"     class="nav-link">Play</a></li>
+    </ul>
+  </nav>
+
+  <div class="explore-page">
+
+    <header class="explore-header">
+      <h1 class="page-title"><span>Playable Portfolio</span></h1>
+      <p class="explore-sub">Fullscreen for a better experience, especially on mobile.</p>
+    </header>
+
+    <!-- Retro monitor bezel. #game-stage is the screen: everything the game
+         draws or overlays lives inside it, so CSS-expanding the cabinet to
+         the viewport is all "fullscreen" has to do. -->
+    <div class="cabinet" id="cabinet">
+      <div class="cabinet-screen" id="game-stage">
+        <canvas id="game"></canvas>
+
+        <!-- Berry teaser + info panels are injected here by ui.js -->
+        <div id="hud"></div>
+
+        <!-- Touch controls: hidden until the first touch contact -->
+        <div id="touch-ui">
+          <div id="joystick"><div id="joystick-knob"></div></div>
+          <div id="btn-down" class="touch-btn">▼</div>
+          <div id="btn-jump" class="touch-btn">Jump</div>
+          <div id="btn-respawn" class="touch-btn">↺</div>
+        </div>
+
+        <div id="stage-buttons">
+          <button type="button" id="btn-controls" class="stage-btn">Controls</button>
+          <button type="button" id="btn-fullscreen" class="stage-btn stage-btn--icon"
+                  aria-label="Enter fullscreen" title="Fullscreen">⛶</button>
+        </div>
+
+        <!-- Paper cards (Welcome, Controls) mount here -->
+        <div id="card-layer"></div>
+      </div>
+
+    </div>
+
+    <!-- Ocean waves footer -->
+    <div class="waves-footer" aria-hidden="true">
+      <svg viewBox="0 24 150 28" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <path id="wh" d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18v44h-352z"/>
+        </defs>
+        <g class="wave-parallax">
+          <use href="#wh" x="48" y="0" fill="rgba(20,50,160,0.4)"/>
+          <use href="#wh" x="48" y="3" fill="rgba(29,78,216,0.3)"/>
+          <use href="#wh" x="48" y="5" fill="rgba(96,165,250,0.18)"/>
+          <use href="#wh" x="48" y="7" fill="rgba(13,27,62,0.3)"/>
+        </g>
+      </svg>
+    </div>
+
+  </div><!-- .explore-page -->
+
+  <script src="/scripts.js"></script>
+  <script type="module" src="main.js"></script>
+</body>
+</html>

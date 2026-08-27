@@ -1,0 +1,339 @@
+/* ============================================================
+   Paper cards — shared hand-drawn "note" overlay
+   ------------------------------------------------------------
+   Used by BOTH the Controls reference and the Welcome card
+   (see cards.js). Deliberately unlike the game's own low-poly
+   HUD: cream notebook stock, drawn ink borders, handwriting
+   faces. Add new cards through PaperCard rather than writing
+   one-off CSS here.
+   ============================================================ */
+
+:root {
+  --paper:        #fbf5e4;
+  --paper-edge:   #ece2c6;
+  --ink:          #2f3529;
+  --ink-soft:     #5c6552;
+  --ink-rule:     rgba(84, 110, 145, 0.17);
+  --ink-margin:   rgba(186, 92, 78, 0.35);
+  --paper-accent: #2f7a68;
+}
+
+/* Scrim: dims the game behind an open card, inside the stage only.
+   The SCRIM scrolls (not the card), so a card taller than a short frame
+   never gets its drawn border clipped — `margin: auto` still centers it
+   while leaving both overflow edges reachable. */
+.paper-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+  display: none;
+  padding: 14px;
+  background: rgba(8, 16, 12, 0.5);
+  pointer-events: auto;
+  overflow: auto;
+}
+.paper-scrim.open { display: flex; }
+
+/* ── The card itself ─────────────────────────────────── */
+
+.paper-card {
+  --rule-step: 28px;
+  /* Nudges the ruled lines so text baselines land ON them rather than
+     floating between. Tuned against Kalam's metrics with
+     `node dev/rulecheck.js`, which reports a signed "median off-by": a
+     POSITIVE median means the text sits below its line, and is the number of
+     px to ADD here. Raising it moves the RULES down, which reads as the text
+     sitting higher. Re-run it if the body font or --rule-step changes. */
+  --rule-nudge: 3.5px;
+  position: relative;
+  margin: auto;
+  width: min(560px, 100%);
+  max-height: 100%;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  padding: var(--rule-step) 30px calc(var(--rule-step) * 0.75);
+  color: var(--ink);
+  font-family: 'Kalam', 'Segoe Print', 'Bradley Hand', cursive;
+  font-size: 16px;
+  /* A LENGTH, not a ratio: one text line per ruled line, so the copy sits
+     on the paper instead of drifting across it. Every vertical gap below
+     is a multiple of --rule-step for the same reason. */
+  line-height: var(--rule-step);
+
+  background-color: var(--paper);
+  /* ruled notebook stock + a soft aged wash toward the edges */
+  background-image:
+    repeating-linear-gradient(to bottom,
+      transparent 0 calc(var(--rule-step) - 1px),
+      var(--ink-rule) calc(var(--rule-step) - 1px) var(--rule-step)),
+    radial-gradient(
+      120% 110% at 30% 10%, #fffdf4 0%, var(--paper) 46%, var(--paper-edge) 100%);
+  background-position: 0 var(--rule-nudge), 0 0;
+
+  /* the "drawn by hand" box: uneven radii, ink-weight stroke */
+  border: 2px solid var(--ink);
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.45);
+}
+
+/* The card takes focus when it opens so screen readers land on it; it is a
+   container, not a control, so it shouldn't draw a focus ring — the X and
+   the Start button carry their own. */
+.paper-card:focus,
+.paper-card:focus-visible { outline: none; }
+
+/* second, lighter stroke just inside — reads as a pen gone round twice */
+.paper-card::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 1.5px solid rgba(47, 53, 41, 0.3);
+  border-radius: 15px 225px 15px 255px / 255px 15px 225px 15px;
+  pointer-events: none;
+}
+
+/* Letter variant: kept as a hook for the Welcome card. The red margin rule
+   it used to draw down the left edge was removed at the owner's request —
+   the ruled stock alone is the look. */
+
+/* Wide variant: the controls reference needs room for two columns. */
+.paper-card--wide { width: min(720px, 100%); }
+
+/* ── Tape strips (added by PaperCard) ────────────────── */
+
+.paper-tape {
+  position: absolute;
+  top: -13px;
+  width: 84px;
+  height: 26px;
+  background: rgba(238, 232, 205, 0.62);
+  border-left: 1px solid rgba(255, 255, 255, 0.35);
+  border-right: 1px solid rgba(160, 152, 122, 0.3);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18);
+  pointer-events: none;
+}
+.paper-tape--l { left: 24px;  transform: rotate(-4deg); }
+.paper-tape--r { right: 24px; transform: rotate(3.5deg); }
+
+/* ── Type ────────────────────────────────────────────── */
+
+.paper-card h2 {
+  font-family: 'Patrick Hand', 'Segoe Print', cursive;
+  font-size: 34px;
+  font-weight: 400;
+  line-height: calc(var(--rule-step) * 1.5);
+  letter-spacing: 0.01em;
+  margin-bottom: 0;
+}
+
+.paper-card h3 {
+  font-family: 'Patrick Hand', 'Segoe Print', cursive;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: var(--rule-step);
+  color: var(--paper-accent);
+  margin-bottom: 0;
+}
+
+/* The scrolling region — everything else on the card is pinned. */
+.paper-body {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(47, 53, 41, 0.35) transparent;
+}
+
+.paper-card h2,
+.paper-rule,
+.paper-actions { flex-shrink: 0; }
+
+.paper-card p { margin-bottom: var(--rule-step); max-width: 100%; }
+.paper-card p:last-of-type { margin-bottom: 0; }
+
+/* trailing aside under a list block */
+.paper-note {
+  margin-top: calc(var(--rule-step) * 0.5);
+  padding-top: calc(var(--rule-step) * 0.5);
+  border-top: 1.5px solid rgba(47, 53, 41, 0.22);
+  color: var(--ink-soft);
+  font-size: 15px;
+}
+
+/* Hand-underlined heading: a short, slightly wobbly pen stroke. Kept
+   narrow so it reads as an underline, not another ruled line. */
+.paper-rule {
+  width: 34%;
+  min-width: 130px;
+  max-width: 230px;
+  height: calc(var(--rule-step) * 0.5 - 2px);
+  margin: 0 0 calc(var(--rule-step) * 0.5);
+  border-bottom: 2px solid var(--ink);
+  border-radius: 60% 40% 50% 45% / 100% 100% 0 0;
+  opacity: 0.6;
+}
+
+/* ── Key/action list ─────────────────────────────────── */
+
+.paper-cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--rule-step) 30px;
+}
+
+/* Two aligned columns (key, meaning) — `display: contents` on the row lets
+   every key share one auto-sized column so the descriptions line up. */
+.paper-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0 10px;
+  align-items: baseline;
+}
+.paper-list li { display: contents; }
+.paper-list .what { color: var(--ink-soft); }
+
+/* keycap: a boxy shape sketched around the key name */
+.paper-key {
+  flex-shrink: 0;
+  min-width: 2.1em;
+  padding: 0 8px;
+  text-align: center;
+  font-family: 'Patrick Hand', 'Segoe Print', cursive;
+  font-size: 15px;
+  line-height: calc(var(--rule-step) - 6px);
+  color: var(--ink);
+  border: 1.5px solid var(--ink);
+  border-radius: 40px 8px 34px 8px / 8px 34px 8px 40px;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* ── Buttons ─────────────────────────────────────────── */
+
+.paper-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--rule-step);
+}
+
+.paper-btn {
+  font-family: 'Patrick Hand', 'Segoe Print', cursive;
+  font-size: 21px;
+  color: var(--paper);
+  background: var(--ink);
+  padding: 7px 34px 8px;
+  border: 2px solid var(--ink);
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  cursor: pointer;
+  transition: transform 0.16s cubic-bezier(0.22, 1, 0.36, 1), background 0.16s;
+}
+.paper-btn:hover  { background: #434c39; transform: translateY(-1px); }
+.paper-btn:active { transform: translateY(0); }
+.paper-btn:focus-visible { outline: 2px solid var(--paper-accent); outline-offset: 3px; }
+
+.paper-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  width: 34px;
+  height: 34px;
+  font-family: 'Patrick Hand', 'Segoe Print', cursive;
+  font-size: 21px;
+  line-height: 1;
+  color: var(--ink);
+  background: transparent;
+  border: 1.5px solid var(--ink);
+  border-radius: 62% 38% 55% 45% / 45% 55% 45% 55%;
+  cursor: pointer;
+  transition: background 0.16s, transform 0.16s;
+}
+.paper-close:hover { background: rgba(47, 53, 41, 0.12); transform: rotate(-6deg); }
+.paper-close:focus-visible { outline: 2px solid var(--paper-accent); outline-offset: 2px; }
+
+
+/* ── Fitting the frame ───────────────────────────────── */
+/* These cards live inside the game stage, which can be anything from a
+   short inlaid bezel to a full phone screen — and the VIEWPORT tells us
+   nothing about which. So they size off the stage itself via a container
+   query on #card-layer, and shrink in step (type, rule spacing, padding)
+   until the whole card, Start button included, fits without scrolling. */
+
+@container stage (max-width: 620px) {
+  .paper-cols { grid-template-columns: 1fr; gap: var(--rule-step); }
+}
+
+/* Each tier only changes --rule-step and the font sizes; every margin,
+   padding and line-height above is expressed in --rule-step, so the text
+   stays locked to the ruled lines automatically. --rule-nudge is re-tuned
+   per tier because it depends on the font size, not the rule spacing. */
+
+@container stage (max-height: 620px) {
+  .paper-card {
+    --rule-step: 24px;
+    --rule-nudge: 3.5px;
+    font-size: 14.5px;
+    padding-inline: 22px;
+    /* Inlaid, the card sits high in a short stage and the title reads as
+       jammed against the bezel. Nudge the whole card down. A transform, not
+       padding: it costs no card height (the Controls card is already near
+       the limit at this tier) and it carries the ruled background with it,
+       so nothing shifts off the grid. */
+    transform: translateY(14px);
+  }
+  .paper-card h2 { font-size: 27px; }
+  .paper-card h3 { font-size: 18px; }
+  .paper-btn { font-size: 18px; padding: 5px 28px 6px; }
+  .paper-note { font-size: 13.5px; }
+}
+
+/* A narrow frame reflows the same copy into far more lines, so width has
+   to shrink the card too, not just height. */
+@container stage (max-width: 470px) {
+  .paper-card {
+    --rule-step: 21px;
+    --rule-nudge: 3.6px;
+    font-size: 13px;
+    padding-inline: 17px;
+  }
+  .paper-card h2 { font-size: 23px; }
+  .paper-card h3 { font-size: 16px; }
+  .paper-rule { min-width: 108px; }
+  .paper-tape { display: none; }
+  .paper-close { width: 28px; height: 28px; font-size: 17px; top: 7px; right: 8px; }
+  .paper-key { font-size: 13px; padding: 0 6px; }
+  .paper-note { font-size: 12.5px; }
+  .paper-btn { font-size: 17px; padding: 4px 26px 5px; }
+}
+
+@container stage (max-height: 470px) {
+  .paper-card {
+    --rule-step: 21px;
+    --rule-nudge: 3.6px;
+    font-size: 13px;
+    padding-inline: 18px;
+  }
+  /* Reclaim ~1.5 rules in the shortest frames so the welcome copy fits
+     without scrolling. Only the heading block and the trailing button gap
+     shrink — nothing that would push the body text off the ruled grid. */
+  .paper-card h2 { font-size: 22px; line-height: var(--rule-step); }
+  .paper-card h3 { font-size: 16px; }
+  /* Reclaims exactly ONE rule above the body text — half from the heading's
+     line-height (1.5 rules -> 1) and half from the top padding. A whole
+     rule, so the copy stays on the lines and --rule-nudge is unchanged.
+     Shedding a HALF rule here would drop every line between the lines. */
+  .paper-card {
+    padding-top: calc(var(--rule-step) * 0.5);
+    padding-bottom: calc(var(--rule-step) * 0.5);
+  }
+  .paper-actions { margin-top: calc(var(--rule-step) * 0.5); }
+  .paper-tape { display: none; } /* no room to hang off the top edge */
+  .paper-close { width: 28px; height: 28px; font-size: 17px; top: 8px; right: 9px; }
+  .paper-cols { gap: var(--rule-step) 22px; }
+  .paper-key { font-size: 13px; }
+  .paper-btn { font-size: 16px; padding: 4px 24px 5px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .paper-btn, .paper-close { transition: none; }
+}
