@@ -716,8 +716,8 @@ export function buildWorld(scene) {
   //      short of x 64: that is the corridor's invisible boundary wall.)
   solid(37, 2.4, -146, 3, 0.6, 3, C.padStone);       // 1. start pad, top 3.0 (step up from the island)
   solid(43, 4.4, -146, 1.5, 0.6, 1.5, C.padStone);   // 2. small pad, top 5.0 (+2.0, jump height), 6.0 out, HALF a normal pad
-  solid(52, 4.5, -146, 3.5, 9.0, 8, C.stone);     // 3. wall, FLOATING: 4.5 up to 13.5, face at x 49.5, 3.5 thick so its top is a landable ledge with a run-up
-  solid(62.4, 12.9, -146, 3, 0.6, 3.5, C.padStone);  // 4. berry pad, top 13.5, level with the wall top → M4. Full 3u pad, moved in so its east edge (63.9) clears the corridor's invisible boundary wall at x 64 — the player can only ever stand out to 63.6, so nothing east of that was reachable anyway. Shortening the gap to 7.15u is what lets a superdash reach it as well as a wavedash.
+  solid(51, 4.5, -146, 3.5, 10.0, 8, C.stone);     // 3. wall, FLOATING: 4.5 up to 13.5, face at x 49.5, 3.5 thick so its top is a landable ledge with a run-up
+  solid(60, 13.9, -146, 3, 0.6, 3.5, C.padStone);  // 4. berry pad, top 13.5, level with the wall top → M4. Full 3u pad, moved in so its east edge (63.9) clears the corridor's invisible boundary wall at x 64 — the player can only ever stand out to 63.6, so nothing east of that was reachable anyway. Shortening the gap to 7.15u is what lets a superdash reach it as well as a wavedash.
 
   // M5 — THE GAUNTLET. M1, M2, M3 and M4 replayed back to back, in that
   // order, on ONE life. No checkpoint inside it — the only lantern is at the
@@ -818,8 +818,8 @@ export function buildWorld(scene) {
   // wall-jump, up-dash back onto its top, then the last gap to the berry.
   solid(-40, 17.8, -168, 3, 0.6, 3, C.padStone);       // start pad, top 18.4
   solid(-46, 19.8, -168, 1.5, 0.6, 1.5, C.padStone);   // small pad, top 20.4 (+2.0, 6.0 out)
-  solid(-55, 19.9, -168, 3.5, 9.0, 8, C.stone);        // wall, floating 19.9 → 28.9, far face at x -56.75
-  solid(-67, 28.3, -168, 3, 0.6, 3.5, C.padStone);     // berry pad, top 28.9, level with the wall top → M5
+  solid(-54, 19.9, -168, 3.5, 10.0, 8, C.stone);        // wall, floating 19.9 → 28.9, far face at x -56.75
+  solid(-67, 29.3, -168, 3, 0.6, 3.5, C.padStone);     // berry pad, top 28.9, level with the wall top → M5
 
   // ── 8. Anti-skip spikes — one specific bypass each ─────────
   const spikeRow = (cx, baseY, z, count = 10, width = 14, depth = 0.7, rows = 2) => {

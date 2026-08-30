@@ -15,8 +15,8 @@ export const MOONBERRIES = [
   { id: 'moon-drift',     category: 'moon', title: 'Moonberry', image: 'cats/cat1.jpg', position: { x: -58.0, y: 20.58, z: -17 } },    // M1 platform beyond the second wall pair, at its top height
   { id: 'moon-movers',    category: 'moon', title: 'Moonberry', image: 'cats/cat2.jpg', position: { x: 43,    y: 13.4, z: -40 } },    // M2 slider-gauntlet finale (east of V1)
   { id: 'moon-wavedash',  category: 'moon', title: 'Moonberry', image: 'cats/cat3.jpg', position: { x: -59, y: 35.5, z: -104 } },    // M3 wavedash→up-diagonal route, platform B (west of the crest)
-  { id: 'moon-superdash', category: 'moon', title: 'Moonberry', image: 'cats/cat4.jpg', position: { x: 62.4, y: 14.8, z: -146 } },  // M4 berry pad (top 13.5), centred on it and inside the x-64 boundary wall
-  { id: 'moon-gauntlet',  category: 'moon', title: 'Moonberry', image: 'cats/cat5.jpg', position: { x: -67,   y: 30.2, z: -168 } }, // M5 gauntlet finish — on §4's berry pad, after M1→M2→M3→M4 in one run
+  { id: 'moon-superdash', category: 'moon', title: 'Moonberry', image: 'cats/cat4.jpg', position: { x: 60, y: 15.8, z: -146 } },  // M4 berry pad (top 13.5), centred on it and inside the x-64 boundary wall
+  { id: 'moon-gauntlet',  category: 'moon', title: 'Moonberry', image: 'cats/cat5.jpg', position: { x: -67,   y: 31.2, z: -168 } }, // M5 gauntlet finish — on §4's berry pad, after M1→M2→M3→M4 in one run
 ];
 
 // Moon-themed berries: pale blue-white body with an icy aura, visually
